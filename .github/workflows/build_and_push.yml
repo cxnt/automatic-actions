@@ -46,8 +46,7 @@ jobs:
         addLatest: true
         dockerfile: "docker/Dockerfile"
         registry: docker.io
-        buildArgs: CUR_REF_NAME=${ github.ref_name }
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
       env:
-        CUR_REF_NAME: ${GITHUB_REF_NAME}
+        CUR_REF_NAME: $GITHUB_REF_NAME
