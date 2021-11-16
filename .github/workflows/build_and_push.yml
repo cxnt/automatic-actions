@@ -20,7 +20,6 @@ jobs:
     - run: echo $GITHUB_REF_NAME
     - run: echo ${GITHUB_REF_NAME:1}
     - run: echo $env.GITHUB_REF_NAME
-    - run: echo ${env.GITHUB_REF_NAME:1}
 
     - name: Install dependencies
       run: |
