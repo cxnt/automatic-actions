@@ -17,8 +17,10 @@ jobs:
         python-version: '3.8'
 
 #    - run: echo $GITHUB_REF
-#    - run: echo $GITHUB_REF_NAME
+    - run: echo $GITHUB_REF_NAME
     - run: echo ${GITHUB_REF_NAME:1}
+    - run: echo $env.GITHUB_REF_NAME
+    - run: echo env.GITHUB_REF_NAME
 
     - name: Install dependencies
       run: |
