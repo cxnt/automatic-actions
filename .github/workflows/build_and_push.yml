@@ -16,10 +16,7 @@ jobs:
       with:
         python-version: '3.8'
 
-#    - run: echo $GITHUB_REF
-    - run: echo $GITHUB_REF_NAME
-    - run: echo ${GITHUB_REF_NAME:1}
-    - run: echo $env.GITHUB_REF_NAME
+    - run: ${{ GITHUB_REF_NAME }}
 
     - name: Install dependencies
       run: |
@@ -49,4 +46,4 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
       env:
-        CUR_REF_NAME: $GITHUB_REF_NAME
+        CUR_REF_NAME: ${{ GITHUB_REF_NAME }}
