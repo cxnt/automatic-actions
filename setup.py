@@ -1,6 +1,6 @@
+import os
 import setuptools
 import subprocess
-import os
 
 git_repo_version = (
     subprocess.run(["git", "describe", "--tags"], stdout=subprocess.PIPE)
@@ -18,7 +18,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="test-package-cxnt",
-    version="0.0.1",
+    version=git_repo_version,
     author="cxnt",
     author_email="author@example.com",
     description="A small example package",
