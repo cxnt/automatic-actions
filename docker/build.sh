@@ -1,1 +1,1 @@
-docker build -t automatic-actions .
+docker build -t cxnt/automatic-actions:0.0.12 .

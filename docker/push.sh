@@ -1,1 +1,1 @@
-docker push cxnt/automatic-actions:tagname
+docker push cxnt/automatic-actions:0.0.12
