@@ -1,7 +1,9 @@
 FROM python:3.8.12-bullseye
 
-RUN echo $CUR_REF_NAME
+RUN version=`cat VERSION`
+RUN echo "version: $version"
 
-RUN pip install automatic-actions==${CUR_REF_NAME}
+
+RUN pip install automatic-actions==$version
 
 CMD ["date"]
