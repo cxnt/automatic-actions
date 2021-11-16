@@ -47,5 +47,3 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-      env:
-        TAG: ${GITHUB_REF_NAME:1}
