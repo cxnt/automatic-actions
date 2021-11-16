@@ -16,12 +16,6 @@ jobs:
       with:
         python-version: '3.8'
 
-#    - run: echo $GITHUB_REF
-    - run: echo $GITHUB_REF_NAME
-    - run: echo ${GITHUB_REF_NAME:1}
-    - run: echo $env.GITHUB_REF_NAME
-    - run: echo env.GITHUB_REF_NAME
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -47,6 +41,6 @@ jobs:
         addLatest: true
         dockerfile: "docker/Dockerfile"
         registry: docker.io
-        buildArgs: GITHUB_REF_NAME=${{ env.GITHUB_REF_NAME }}
+        buildArgs: GITHUB_REF_NAME=${{ GITHUB_REF_NAME:1 }}
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
