@@ -1,0 +1,1 @@
+docker push cxnt/automatic-actions:tagname
