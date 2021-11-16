@@ -18,7 +18,7 @@ jobs:
 
 #    - run: echo $GITHUB_REF
 #    - run: echo $GITHUB_REF_NAME
-#    - run: echo ${GITHUB_REF_NAME:1}
+    - run: echo ${GITHUB_REF_NAME:1}
 
     - name: Install dependencies
       run: |
@@ -32,6 +32,11 @@ jobs:
       with:
         user: ${{ secrets.PYPI_USERNAME }}
         password: ${{ secrets.PYPI_PASSWORD }}
+
+    - name: Wait for PyPI publish
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '10s'
 
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v5
