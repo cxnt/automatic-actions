@@ -41,6 +41,6 @@ jobs:
         addLatest: true
         dockerfile: "docker/Dockerfile"
         registry: docker.io
-        buildArgs: GITHUB_REF_NAME=${{ GITHUB_REF_NAME:1 }}
+        buildArgs: GITHUB_REF_NAME=${{ GITHUB_REF_NAME }}
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
