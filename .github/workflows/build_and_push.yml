@@ -44,3 +44,5 @@ jobs:
         buildArgs: CUR_REF_NAME=${{ github.ref_name }}
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+      env:
+        CUR_REF_NAME: ${{ env.GITHUB_REF_NAME }}

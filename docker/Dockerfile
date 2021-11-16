@@ -1,4 +1,3 @@
-ARG CUR_REF_NAME
 FROM python:3.8.12-bullseye
 
 RUN echo $CUR_REF_NAME
