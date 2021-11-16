@@ -11,7 +11,7 @@ setuptools.setup(
     name="automatic-actions",
     version=version,
     author="cxnt",
-    author_email="cxnt",
+    author_email="pavelbartsits@gmail.com",
     description="Automatic builds for PYPI and Docker",
     long_description=long_description,
     long_description_content_type="text/markdown",
