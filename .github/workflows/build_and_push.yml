@@ -44,7 +44,7 @@ jobs:
         dockerfile: "docker/Dockerfile"
         registry: docker.io
         buildArgs: |
-          cur_ref_name=5
+          cur_ref_name=0.0.10
 #          cur_ref_name=${{ GITHUB_REF_NAME }}
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
