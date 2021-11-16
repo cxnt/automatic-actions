@@ -1,9 +1,8 @@
-ARG GITHUB_REF_NAME
+ARG CUR_REF_NAME
 FROM python:3.8.12-bullseye
 
-RUN echo GITHUB_REF_NAME
-RUN echo ${GITHUB_REF_NAME}
+RUN echo ${CUR_REF_NAME}
 
-RUN pip install automatic-actions==${GITHUB_REF_NAME}
+RUN pip install automatic-actions==${CUR_REF_NAME}
 
 CMD ["date"]
