@@ -16,9 +16,15 @@ with open("VERSION", "w", encoding="utf-8") as fh:
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+
+import requests
+response = requests.get("https://api.github.com/repos/cxnt/automate-actions/releases/latest")
+version = response.json()["name"]
+
+
 setuptools.setup(
     name="automatic-actions",
-    version=git_repo_version,
+    version=version,
     author="cxnt",
     author_email="cxnt",
     description="Automatic builds for PYPI and Docker",
@@ -26,7 +32,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/cxnt/automatic-actions",
     packages=setuptools.find_packages(),
-    package_data={"automatic-actions": ["VERSION"]},
+    package_data={"automatic-actions": version},
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -34,7 +40,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.8",
-    entry_points={"console_scripts": ["src = src.main:main"]},
+    # entry_points={"console_scripts": ["src = src.main:main"]},
     install_requires=[
         "setuptools>=42",
         "wheel"

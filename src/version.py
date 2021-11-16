@@ -1,11 +1,15 @@
 import os
+import requests
+
+# https://api.github.com/repos/{owner}/{target_repos}/releases/latest
+
 
 
 def string():
     try:
-        with open("VERSION", "r", encoding="utf-8") as fh:
-            version = fh.read().strip()
-            if version:
+        response = requests.get("https://api.github.com/repos/cxnt/automate-actions/releases/latest")
+        version = response.json()["name"]
+        if version:
                 return version
     except:
         pass
