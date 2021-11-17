@@ -33,6 +33,12 @@ jobs:
 
 #    - run: echo ${{ steps.tag.outputs.result }}
 
+    - name: Delay for PyPI publish
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '10s'
+
+
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
