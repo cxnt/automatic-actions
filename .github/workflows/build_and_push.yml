@@ -18,7 +18,7 @@ jobs:
       with:
         python-version: '3.8'
 
-    - run: echo ${GITHUB_REF_NAME}
+#    - run: echo ${v0.0.87}
 
     - name: Install dependencies
       run: |
@@ -45,3 +45,8 @@ jobs:
 #          cur_ref_name=${{ GITHUB_REF_NAME }}   NOPE
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+      env:
+        TAG2: ${{ GITHUB_REF_NAME }}
+        TAG3: ${{ env.GITHUB_REF_NAME }}
+        TAG: ${{ v0.0.87 }}
