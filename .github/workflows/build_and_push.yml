@@ -38,7 +38,7 @@ jobs:
         addLatest: true
         dockerfile: "docker/Dockerfile"
         registry: docker.io
-        buildArgs: |
+#        buildArgs: |
 #          cur_ref_name: ${{ GITHUB_REF_NAME }} NOPE
 #          cur_ref_name=${{ GITHUB_REF_NAME }}   NOPE
         username: ${{ secrets.DOCKER_USERNAME }}
