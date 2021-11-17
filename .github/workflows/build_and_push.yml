@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: copy docker/VERSION /VERSION
-
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
