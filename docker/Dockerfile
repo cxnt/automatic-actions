@@ -3,6 +3,7 @@ ARG cur_ref_name
 
 RUN echo $cur_ref_name
 
-RUN pip install automatic-actions==$cur_ref_name
+COPY VERSION /VERSION
+RUN pip install automatic-actions==$(cat /VERSION)
 
 CMD ["date"]

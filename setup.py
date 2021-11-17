@@ -4,7 +4,7 @@ import requests
 response = requests.get("https://api.github.com/repos/cxnt/automatic-actions/releases/latest")
 version = response.json()["name"]
 
-with open("./docker/VERSION", "w", encoding="utf-8") as fh:
+with open("docker/VERSION", "w", encoding="utf-8") as fh:
     fh.write(f"{version.lstrip('v')}\n")
 
 with open("README.md", "r", encoding="utf-8") as fh:
