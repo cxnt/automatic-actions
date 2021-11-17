@@ -31,8 +31,7 @@ jobs:
         user: ${{ secrets.PYPI_USERNAME }}
         password: ${{ secrets.PYPI_PASSWORD }}
 
-    - run: echo ${{ steps.tag }}
-    - run: echo ${{ steps.tag.outputs.result }}
+#    - run: echo ${{ steps.tag.outputs.result }}
 
     - name: Build and Push Docker Image
       uses: mr-smithers-excellent/docker-build-push@v5
