@@ -17,7 +17,7 @@ jobs:
         python-version: '3.8'
 
 
-    - run: echo ${github.ref_name:1}
+    - run: echo ${GITHUB_REF_NAME:1}
 #    - run: echo ${{ github.ref_name:1 }}
 #    - run: echo ${{ github.ref_name :1 }}
 #    - run: echo ${{ github.ref_name:1 }}
@@ -44,7 +44,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: cxnt/automatic-actions
-        tags: ${github.ref_name:1}
+        tags: ${GITHUB_REF_NAME:1}
         addLatest: true
         dockerfile: "docker/Dockerfile"
         registry: docker.io
