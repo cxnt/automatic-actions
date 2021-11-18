@@ -1,8 +1,9 @@
 import setuptools
 import requests
 
-response = requests.get("https://api.github.com/repos/cxnt/automatic-actions/releases/latest")
-version = response.json()["name"]
+# response = requests.get("https://api.github.com/repos/cxnt/automatic-actions/releases/latest")
+response = requests.get("https://api.github.com/repos/supervisely/supervisely/releases/latest")
+version = response.json()["tag_name"]
 
 # with open("docker/VERSION", "w", encoding="utf-8") as fh:
 #     fh.write(f"{version.lstrip('v')}\n")

@@ -16,6 +16,12 @@ jobs:
       with:
         python-version: '3.8'
 
+
+    - run: echo ${{ github.ref_name:1 }}
+    - run: echo "${github.ref_name:1}"
+    - run: echo ${{ github.ref_name :1 }}
+    - run: echo ${{ github.ref_name:1 }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -38,6 +44,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: cxnt/automatic-actions
+        tags: ${{ github.ref_name }}
         addLatest: true
         dockerfile: "docker/Dockerfile"
         registry: docker.io
