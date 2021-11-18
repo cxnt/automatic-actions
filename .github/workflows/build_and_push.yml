@@ -17,8 +17,8 @@ jobs:
         python-version: '3.8'
 
 
+    - run: echo ${github.ref_name:1}
     - run: echo ${{ github.ref_name:1 }}
-    - run: echo "${github.ref_name:1}"
     - run: echo ${{ github.ref_name :1 }}
     - run: echo ${{ github.ref_name:1 }}
 
