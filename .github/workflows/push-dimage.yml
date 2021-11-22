@@ -23,7 +23,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: cxnt/automatic-actions
-        tags: ${GITHUB_REF_NAME:1}
+        tags: ${{ github.ref_name }}
         addLatest: true
         dockerfile: "docker/Dockerfile"
         registry: docker.io
