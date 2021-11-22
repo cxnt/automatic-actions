@@ -1,4 +1,4 @@
-name: Upload PyPI and Docker
+name: Push Docker Image
 
 on:
   release:
