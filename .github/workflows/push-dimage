@@ -1,0 +1,33 @@
+name: Upload PyPI and Docker
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+
+    - run: echo ${GITHUB_REF_NAME:1}
+
+    - name: Build and Push Docker Image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: cxnt/automatic-actions
+        tags: ${GITHUB_REF_NAME:1}
+        addLatest: true
+        dockerfile: "docker/Dockerfile"
+        registry: docker.io
+        buildArgs: |
+          tag_ref_name=${{ github.ref_name }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
