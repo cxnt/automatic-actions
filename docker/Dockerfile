@@ -1,5 +1,7 @@
 FROM python:3.8.12-bullseye
 
-ARG tag_ref_name
+ARG LABEL_VERSION
 
-RUN pip install automatic-actions==$tag_ref_name
+RUN pip install automatic-actions==$LABEL_VERSION
+
+LABEL VERSION=$LABEL_VERSION
