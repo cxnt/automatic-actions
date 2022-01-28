@@ -18,4 +18,8 @@ jobs:
       uses: rtCamp/action-slack-notify@v2
       env:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_USERNAME: Supervisely-bot
+        SLACK_ICON: https://i.imgur.com/u5c1ESX.png
+        SLACK_COLOR: ${{ job.status }}
         SLACK_MESSAGE: New docker and pypi version released ${{ env.RELEASE_VERSION }}
+        
