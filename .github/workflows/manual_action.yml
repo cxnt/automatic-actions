@@ -1,4 +1,4 @@
-name: Upload PyPI and Docker
+name: [Manual] Upload PyPI and Docker
 
 on:
   workflow_dispatch
