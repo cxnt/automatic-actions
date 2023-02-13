@@ -59,8 +59,8 @@ INSTALL_REQUIRES = [
 CHOOSE_INSTALL_REQUIRES = [
     (
         (
-            "opencv-python-headless"
             "opencv-contrib-python",
+            "opencv-python-headless",
             "opencv-contrib-python-headless",
         ),
         "opencv-python>=4.5.5.62, <5.0.0.0",
@@ -75,8 +75,8 @@ def choose_requirement(mains, secondary):
     chosen = secondary
     for main in mains:
         try:
-            name = re.split(r"[!<>=]", main)[0]
-            get_distribution(name)
+#             name = re.split(r"[!<>=]", main)[0]
+            get_distribution(main)
             chosen = main
             break
         except DistributionNotFound:
