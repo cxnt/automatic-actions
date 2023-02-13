@@ -1,4 +1,4 @@
-name: [Manual] Upload PyPI
+name: Manual Upload PyPI
 
 on:
   workflow_dispatch
