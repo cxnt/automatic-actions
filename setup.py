@@ -76,7 +76,7 @@ if not opencv_contrib_installed:
 
 
 setup(
-    name="supervisely",
+    name="automatic-actions",
     version=version,
     python_requires=">=3.7.1",
     classifiers=[
