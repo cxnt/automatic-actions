@@ -71,8 +71,8 @@ INSTALL_REQUIRES = [
     "python-multipart==0.0.5",
 ]
 
-if not opencv_contrib_installed:
-    INSTALL_REQUIRES.append("opencv-python>=4.5.5.62, <5.0.0.0")
+# if not opencv_contrib_installed:
+#     INSTALL_REQUIRES.append("opencv-python>=4.5.5.62, <5.0.0.0")
 
 
 setup(
