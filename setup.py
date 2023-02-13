@@ -59,11 +59,11 @@ INSTALL_REQUIRES = [
 CHOOSE_INSTALL_REQUIRES = [
     (
         (
-            "opencv-contrib-python",
+            "opencv-python",
             "opencv-python-headless",
             "opencv-contrib-python-headless",
         ),
-        "opencv-python",
+        "opencv-contrib-python",
     )
 ]
 
