@@ -19,7 +19,6 @@ version = response.json()["tag_name"]
 
 INSTALL_REQUIRES = [
     "numpy>=1.19, <2.0.0",
-    "opencv-python>=4.5.5.62, <5.0.0.0",
     "PTable>=0.9.2, <1.0.0",
     "pillow>=5.4.1, <10.0.0",
     "protobuf>=3.14.0, <=3.20.3",
@@ -60,11 +59,11 @@ INSTALL_REQUIRES = [
 CHOOSE_INSTALL_REQUIRES = [
     (
         (
-            "opencv-python>=4.5.5.62, <5.0.0.0",
-            "opencv-contrib-python>=4.5.5.62, <5.0.0.0",
-            "opencv-contrib-python-headless>=4.5.5.62, <5.0.0.0",
+            "opencv-python-headless"
+            "opencv-contrib-python",
+            "opencv-contrib-python-headless",
         ),
-        "opencv-python-headless>=4.5.5.62, <5.0.0.0",
+        "opencv-python>=4.5.5.62, <5.0.0.0",
     )
 ]
 
