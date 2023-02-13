@@ -1,6 +1,7 @@
 import os
 import re
 import requests
+import importlib
 from pkg_resources import DistributionNotFound, get_distribution
 
 from setuptools import find_packages, setup
@@ -13,15 +14,27 @@ def read(fname):
         return fin.read()
 
 
-response = requests.get(
-    "https://api.github.com/repos/supervisely/automatic-actions/releases/latest"
-)
+response = requests.get("https://api.github.com/repos/cxnt/automatic-actions/releases/latest")
 version = response.json()["tag_name"]
+
+
+# Check if opencv-contrib-python is already installed
+try:
+    importlib.import_module("cv2")
+    opencv_contrib_installed = True
+    print("---------------------------------------------")
+    print("---------------------------------------------")
+    print("---------------------------------------------")
+    print("Version of opencv-python is already installed")
+    print("---------------------------------------------")
+    print("---------------------------------------------")
+    print("---------------------------------------------")
+except ImportError:
+    opencv_contrib_installed = False
 
 
 INSTALL_REQUIRES = [
     "numpy>=1.19, <2.0.0",
-    "opencv-python>=4.5.5.62, <5.0.0.0",
     "PTable>=0.9.2, <1.0.0",
     "pillow>=5.4.1, <10.0.0",
     "protobuf>=3.14.0, <=3.20.3",
@@ -58,45 +71,12 @@ INSTALL_REQUIRES = [
     "python-multipart==0.0.5",
 ]
 
-ALT_INSTALL_REQUIRES = {
-    "opencv-python>=4.5.5.62, <5.0.0.0": ["opencv-python-headless", "opencv-contrib-python", "opencv-contrib-python-headless"],
-}
+if not opencv_contrib_installed:
+    INSTALL_REQUIRES.append("opencv-python>=4.5.5.62, <5.0.0.0")
 
 
-def check_alternative_installation(install_require, alternative_install_requires):
-    """If some version version of alternative requirement installed, return alternative,
-    else return main.
-    """
-    for alternative_install_require in alternative_install_requires:
-        try:
-            alternative_pkg_name = re.split(r"[ !<>=]", alternative_install_require)[0]
-            get_distribution(alternative_pkg_name)
-            return str(alternative_install_require)
-        except DistributionNotFound:
-            continue
-
-    return str(install_require)
-
-
-def get_install_requirements(main_requires, alternative_requires):
-    """Iterates over all install requires
-    If an install require has an alternative option, check if this option is installed
-    If that is the case, replace the install require by the alternative to not install dual package"""
-    install_requires = []
-    for main_require in main_requires:
-        if main_require in alternative_requires:
-            main_require = check_alternative_installation(main_require, alternative_requires.get(main_require))
-        install_requires.append(main_require)
-
-    return install_requires
-
-
-# Dependencies do not include PyTorch, so
-# supervisely_lib.nn.hosted.pytorch will not work out of the box.
-# If you need to invoke that part of the code, it is very likely you
-# already have PyTorch installed.
 setup(
-    name="automatic-actions",
+    name="supervisely",
     version=version,
     python_requires=">=3.7.1",
     classifiers=[
@@ -111,20 +91,18 @@ setup(
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-#     packages=find_packages(
-#         include=["supervisely_lib", "supervisely_lib.*", "supervisely", "supervisely.*"]
-#     ),
-    description="Supervisely Python SDK.",
+    packages=find_packages(
+        include=["src"]
+    ),
+    description="Test lib for automatic actions.",
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
-    url="https://github.com/supervisely/automatic-actions",
-#     package_data={
-#         "": ["*.html", "*.css", "*.js"],
-#         "supervisely": ["video/*.sh", "app/development/*.sh", "imaging/colors.json.gz"],
-#     },
-    install_requires=get_install_requirements(
-        INSTALL_REQUIRES, ALT_INSTALL_REQUIRES
-    ),
+    url="https://github.com/cxnt/automatic-actions",
+    package_data={
+        "": ["*.html", "*.css", "*.js"],
+        "src": ["video/*.sh", "app/development/*.sh", "imaging/colors.json.gz"],
+    },
+    install_requires=INSTALL_REQUIRES,
     extras_require={
         "extras": [
             "docker>=5.0.3, <6.0.0",
@@ -173,6 +151,6 @@ setup(
         ],
         "aug": [
             "imgaug>=0.4.0, <1.0.0",
-        ]
+        ],
     },
 )
