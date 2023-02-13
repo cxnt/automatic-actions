@@ -63,7 +63,7 @@ CHOOSE_INSTALL_REQUIRES = [
             "opencv-python-headless",
             "opencv-contrib-python-headless",
         ),
-        "opencv-python>=4.5.5.62, <5.0.0.0",
+        "opencv-python",
     )
 ]
 
