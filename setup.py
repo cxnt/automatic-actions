@@ -18,10 +18,10 @@ response = requests.get("https://api.github.com/repos/cxnt/automatic-actions/rel
 version = response.json()["tag_name"]
 
 
-# Check if opencv-contrib-python is already installed
+# Check if opencv-python is already installed
 try:
     importlib.import_module("cv2")
-    opencv_contrib_installed = True
+    opencv_installed = True
     print("---------------------------------------------")
     print("---------------------------------------------")
     print("---------------------------------------------")
@@ -30,7 +30,7 @@ try:
     print("---------------------------------------------")
     print("---------------------------------------------")
 except ImportError:
-    opencv_contrib_installed = False
+    opencv_installed = False
 
 
 INSTALL_REQUIRES = [
@@ -71,8 +71,8 @@ INSTALL_REQUIRES = [
     "python-multipart==0.0.5",
 ]
 
-# if not opencv_contrib_installed:
-#     INSTALL_REQUIRES.append("opencv-python>=4.5.5.62, <5.0.0.0")
+if not opencv_installed:
+    INSTALL_REQUIRES.append("opencv-python>=4.5.5.62, <5.0.0.0")
 
 
 setup(
