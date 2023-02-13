@@ -55,40 +55,21 @@ INSTALL_REQUIRES = [
     "python-multipart==0.0.5",
 ]
 
-# If none of packages in first installed, install second package
-CHOOSE_INSTALL_REQUIRES = [
-    (
-        (
-            "opencv-python",
-            "opencv-python-headless",
-            "opencv-contrib-python-headless",
-        ),
-        "opencv-contrib-python",
-    )
-]
-
-
-def choose_requirement(mains, secondary):
-    """If some version of main requirement installed, return main,
-    else return secondary.
-    """
-    chosen = secondary
-    for main in mains:
+def choose_requirement():
+    opencv_flavors = ["opencv-contrib-python", "opencv-python-headless", "opencv-contrib-python-headless"]
+    chosen = "opencv-python"
+    for flavor in opencv_flavors:
         try:
-#             name = re.split(r"[!<>=]", main)[0]
-            get_distribution(main)
-            chosen = main
+            get_distribution(flavor)
+            chosen = flavor
             break
         except DistributionNotFound:
             pass
-
     return str(chosen)
 
 
-def get_install_requirements(install_requires, choose_install_requires):
-    for mains, secondary in choose_install_requires:
-        install_requires.append(choose_requirement(mains, secondary))
-
+def get_install_requirements(install_requires):
+    install_requires.append(choose_requirement())
     return install_requires
 
 
@@ -119,7 +100,7 @@ setup(
         "": ["*.html", "*.css", "*.js"],
         "src": ["video/*.sh", "app/development/*.sh", "imaging/colors.json.gz"],
     },
-    install_requires=get_install_requirements(INSTALL_REQUIRES, CHOOSE_INSTALL_REQUIRES),
+    install_requires=get_install_requirements(INSTALL_REQUIRES),
     extras_require={
         "extras": [
             "docker>=5.0.3, <6.0.0",
