@@ -1,5 +1,6 @@
 FROM supervisely/base-py:6.1.7
 
+RUN apt-get update
 RUN apt-get install -y zlib1g
 RUN apt install -y libssl-dev
 
