@@ -16,6 +16,19 @@ jobs:
       -  
         name: Echo ${GITHUB_REF_NAME}
         run: echo ${GITHUB_REF#refs/*/}
+      -  
+        name: Echo ${GITHUB_REF:10}
+        run: echo ${GITHUB_REF:10}
+      -  
+        name: Echo ${GITHUB_REF:10}
+        run: echo ${GITHUB_REF:10}
+      -  
+        name: Echo ${GITHUB_REF}
+        run: echo ${GITHUB_REF}
+      -  
+        name: Echo $(git describe --tags `git rev-list --tags --max-count=1`)
+        run: echo $(git describe --tags `git rev-list --tags --max-count=1`)
+  
         
       - uses: actions/checkout@v2
       - name: Write Tag to ENV variable
