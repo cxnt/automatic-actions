@@ -1,0 +1,36 @@
+name: manual-build-push-release
+
+on:
+  workflow_dispatch:
+    tags:
+      - release-v*
+      - 'v*.*.*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -  
+        name: Echo ${GITHUB_REF_NAME}
+        run: echo ${GITHUB_REF#refs/*/}
+        
+      - uses: actions/checkout@v2
+      - name: Write Tag to ENV variable
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: cxnt/automatic-actions
+          tags: ${{ env.RELEASE_VERSION }}
+          addLatest: true
+          dockerfile: "docker/images/automatic/Dockerfile"
+          registry: docker.io
+          buildArgs: |
+            tag_ref_name=${{ env.RELEASE_VERSION }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
