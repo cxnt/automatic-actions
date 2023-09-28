@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
     tags:
       - release-v*
-      - 'v*.*.*'
 
 jobs:
   deploy:
