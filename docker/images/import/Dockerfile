@@ -29,4 +29,4 @@ RUN pip install lxml==4.6.3
 RUN pip install scikit-image==0.18.3
 
 # Supervisely
-RUN pip install --upgrade supervisely==$tag_ref_name
+RUN pip install supervisely[training]
