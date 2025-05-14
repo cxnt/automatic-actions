@@ -4,10 +4,10 @@ ARG tag_ref_name
 
 # Import
 # pycocotools
-RUN pip install numpy==1.24.4
-RUN pip install Cython==0.29.21
-RUN pip install --no-build-isolation pycocotools==2.0.6
+# RUN pip install numpy==1.24.4
+# RUN pip install Cython==0.29.21
 
+RUN pip install --no-build-isolation pycocotools==2.0.6
 RUN pip install htmllistparse==0.6.0
 RUN pip install google-cloud-storage==1.35.0 google-api-python-client==2.81.0
 RUN pip install yt-dlp==2023.3.4 moviepy==1.0.3
