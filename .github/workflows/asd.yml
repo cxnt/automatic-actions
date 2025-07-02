@@ -3,15 +3,15 @@ name: Manual Upload PyPI, Docker Build & Push
 on:
   workflow_dispatch:
     inputs:
-      package_version:
-        description: "Package version without leading v, e.g. 1.20.300"
+      tag_version:
+        description: "Docker Image Tag (without 'v')"
         required: true
         type: string
 
 env:
   REGISTRY: docker.io
   ORG: supervisely
-  RELEASE_VERSION: ${{ inputs.package_version }}
+  RELEASE_VERSION: ${{ inputs.tag_version }}
 
 jobs:
   _docker_build_push: &docker_build_push
