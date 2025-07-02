@@ -3,10 +3,10 @@ name: Manual Upload PyPI, Docker Build & Push
 on:
   workflow_dispatch:
     inputs:
-      tag_version:
-        description: "Docker Image Tag (without 'v')"
+      package_version:
+        description: "Package version without leading v, e.g. 1.20.300"
         required: true
-        default: ""
+        type: string
 
 env:
   REGISTRY: docker.io
@@ -76,7 +76,7 @@ jobs:
       - name: Build sdist / wheel
         run: python -m build
       - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+        uses: pypa/gh-action-pypi-publish@v1.8.8
         with:
           skip-existing: true
       - name: Wait after PyPI publish
