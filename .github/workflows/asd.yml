@@ -11,13 +11,14 @@ on:
 env:
   REGISTRY: docker.io
   ORG: supervisely
-  RELEASE_VERSION: ${{ inputs.tag_version }}
 
 jobs:
   _docker_build_push: &docker_build_push
     if: ${{ false }}
     name: Docker Build & Push Template
     runs-on: ubuntu-latest
+    env:
+      RELEASE_VERSION: ${{ inputs.tag_version }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Docker Buildx
