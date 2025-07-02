@@ -3,7 +3,7 @@ name: Manual Upload PyPI, Docker Build & Push
 on:
   workflow_dispatch:
     inputs:
-      tags:
+      tag_version:
         description: "Docker Image Tag (without 'v')"
         required: true
         default: ""
