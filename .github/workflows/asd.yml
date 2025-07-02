@@ -1,4 +1,4 @@
-name: Manual Upload PyPI, Docker Build & Push
+name: Manual Publish PyPI, Build & Push Docker Images
 
 on:
   workflow_dispatch:
